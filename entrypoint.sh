@@ -19,15 +19,16 @@ fi
 if [ "$GITHUB_EVENT_NAME" != "pull_request" ]; then
     pint $CONFIG $LOGLEVEL lint $MIN_SEVERITY $REQUIRE_OWNER $WORKDIR
 else
-    CMD="ci"
     BASEBRANCH="$GITHUB_BASE_REF"
     PRBRANCH="$GITHUB_HEAD_REF"
     echo ">>> BASE BRANCH: $BASEBRANCH"
     echo ">>> PR BRANCH: $PRBRANCH"
 
     echo ">>> GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+    echo ">>> GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+
     git config --global --add safe.directory ${GITHUB_WORKSPACE}
-    
+
     git fetch origin "$BASEBRANCH"
     git checkout "$BASEBRANCH"
     git fetch origin "$PRBRANCH"
