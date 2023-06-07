@@ -27,10 +27,6 @@ inputs:
     description: "Require all rules to have an owner set via comment"
     required: false
     default: ""
-  repository:
-    description: "Repository for pint CI to work against"
-    required: false
-    default: ${{ github.repository }}
 
 runs:
   using: "docker"
@@ -42,4 +38,3 @@ runs:
     LOGLEVEL: ${{ inputs.loglevel }}
     MIN_SEVERITY: ${{ inputs.minSeverity }}
     REQUIRE_OWNER: ${{ inputs.requireOwner }}
-    GITHUB_REPOSITORY: ${{ inputs.repository }}
